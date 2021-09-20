@@ -39,7 +39,7 @@ public:
 	void MoveRight(float Axis);
 
 	bool bDead; //determines if character is dead or not
-	bDead = false; //default value so you are not dead.
+	
 
 protected:
 	// Called when the game starts or when spawned

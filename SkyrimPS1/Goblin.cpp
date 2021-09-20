@@ -54,17 +54,37 @@ void AGoblin::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput); //turn is name of input on UE4. binds controls to that inputs yaw movement
+	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput); //same as before just looking up and down with input LookUp
+
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump); //jumps when pressed
+		PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping); //stops jumping when released
+
+		PlayerInputComponent->BindAxis("Forward", this, &AGoblin::MoveForward);
+		PlayerInputComponent->BindAxis("horizontal", this, &AGoblin::MoveRight);
 }
 
 void AGoblin::MoveForward(float Axis)
 {
 
+	if (!bDead) {
+		const FRotator Rotation = Controller->GetControlRotation(); //moves character if not dead
+		const FRotator YawRotation(0, Rotation.Yaw, 0); //finds forward direction
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X); //calculates forward rotation
+		AddMovementInput(Direction, Axis);
+	}
 
 
 }
 
 void AGoblin::MoveRight(float Axis)
 {
+	if (!bDead) {
+		const FRotator Rotation = Controller->GetControlRotation(); //moves character if not dead
+		const FRotator YawRotation(0, Rotation.Yaw, 0); //finds forward direction
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y); //calculates forward rotation
+		AddMovementInput(Direction, Axis);
+	}
 
 
 }
