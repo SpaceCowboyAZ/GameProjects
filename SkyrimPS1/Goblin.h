@@ -43,6 +43,9 @@ public:
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);
 
+
+
+
 	bool bDead; //determines if character is dead or not
 	
 
@@ -50,12 +53,12 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+
 	/** Function to collect every AutoPickup in range. */
 	void CollectAutoPickups();
 
 	/** Function to check for the closest Interactable in sight and in range. */
 	void CheckForInteractables();
-
 
 
 public:	

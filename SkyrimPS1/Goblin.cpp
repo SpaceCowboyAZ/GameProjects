@@ -5,7 +5,8 @@
 #include "Goblin.h"
 #include "Interactable.h"
 #include "AutoPickup.h"
-// #include "InventoryItem.h" not working. from past update I believe
+#include "sword.h"
+// #include "InventoryItem.h"
 #include "InventoryController.h"
 
 // Sets default values
@@ -78,6 +79,7 @@ void AGoblin::CollectAutoPickups()
 		if (TestPickup && !TestPickup->IsPendingKill())
 		{
 			TestPickup->Collect(IController);
+			
 		}
 	}
 

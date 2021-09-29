@@ -27,27 +27,5 @@ AswordPickup::AswordPickup()
 
 	// Attach the StaticMeshComponent to the RootComponent.
 	//PickupMesh->AttachToComponent(RootComponent); I don't think this syntax works anymore on this verison.
-	bool AttachToComponent
-	(
-		USceneComponent * InGoblin, //InParent
-		const FAttachmentTransformRules & AttachmentRules,
-		FName Inhand_L //InSocket
-	)
 
-		 Enable the generation of overlapping events and assign a function to be run when it happens;
-		BaseCollisionComponent->bGenerateOverlapEvents = true;
-	BaseCollisionComponent->OnComponentBeginOverlap.AddDynamic(this, &AswordPickup::OnOverlapBegin);
-
-	 Disable Overlap Events on the Mesh
-	PickupMesh->bGenerateOverlapEvents = false;  
 }
-
-void AswordPickup::OnOverlapBegin(class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	// OtherActor is the actor that triggered the event. Check that is not ourself
-	if ((OtherActor == nullptr) || (OtherActor == this) || (OtherComp == nullptr))
-		return;
-
-//	 UE_LOG(MyCriticalErrors, Warning, TEXT("Picked up.")); 
-}
-
