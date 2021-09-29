@@ -1,7 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "SkyrimPS1.h"
 #include "swordPickup.h"
+#include "Components/SceneComponent.h"
+#include "SkyrimPS1.h"
+
+
 
 // Sets default values
 
@@ -23,14 +26,20 @@ AswordPickup::AswordPickup()
 	PickupMesh->SetSimulatePhysics(false);
 
 	// Attach the StaticMeshComponent to the RootComponent.
-	PickupMesh->AttachTo(RootComponent);
+	//PickupMesh->AttachToComponent(RootComponent); I don't think this syntax works anymore on this verison.
+	bool AttachToComponent
+	(
+		USceneComponent * InGoblin, //InParent
+		const FAttachmentTransformRules & AttachmentRules,
+		FName Inhand_L //InSocket
+	)
 
-	// Enable the generation of overlapping events and assign a function to be run when it happens.
-	BaseCollisionComponent->bGenerateOverlapEvents = true;
+		 Enable the generation of overlapping events and assign a function to be run when it happens;
+		BaseCollisionComponent->bGenerateOverlapEvents = true;
 	BaseCollisionComponent->OnComponentBeginOverlap.AddDynamic(this, &AswordPickup::OnOverlapBegin);
 
-	// Disable Overlap Events on the Mesh
-	PickupMesh->bGenerateOverlapEvents = false;
+	 Disable Overlap Events on the Mesh
+	PickupMesh->bGenerateOverlapEvents = false;  
 }
 
 void AswordPickup::OnOverlapBegin(class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -39,6 +48,6 @@ void AswordPickup::OnOverlapBegin(class AActor* OtherActor, class UPrimitiveComp
 	if ((OtherActor == nullptr) || (OtherActor == this) || (OtherComp == nullptr))
 		return;
 
-	UE_LOG(MyCriticalErrors, Warning, TEXT("Picked up."));
+//	 UE_LOG(MyCriticalErrors, Warning, TEXT("Picked up.")); 
 }
 

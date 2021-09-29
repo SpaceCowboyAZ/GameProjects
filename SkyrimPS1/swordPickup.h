@@ -1,10 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+#include "Components/CapsuleComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "swordPickup.generated.h"
+
 
 UCLASS()
 class SKYRIMPS1_API AswordPickup : public AActor

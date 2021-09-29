@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Engine.h"
 #include "GameFramework/Character.h"
 
 //unreal engine components. files need to be quoted
@@ -35,6 +35,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		UCameraComponent* FollowCamera;
 
+	/** Collection sphere - only needed for AutoPickups */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+		class USphereComponent* CollectionSphere;
+
+
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);
 
@@ -45,11 +50,22 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	/** Function to collect every AutoPickup in range. */
+	void CollectAutoPickups();
+
+	/** Function to check for the closest Interactable in sight and in range. */
+	void CheckForInteractables();
+
+
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	//virtual void Tick(float DeltaTime) override; required to collect any pickup
 
+	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	//virtual void Tick(float DeltaTime) override; required to collect any pickup
 };
