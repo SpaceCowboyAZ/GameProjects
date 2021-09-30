@@ -14,7 +14,18 @@ class SKYRIMPS1_API AAutoPickup : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AAutoPickup();
+	UFUNCTION(BlueprintNativeEvent)
+		void Collect(APlayerController* Controller);
+	virtual void Collect_Implementation(APlayerController* Controller);
 
+	FName GetItemID();
+
+protected:
+	UPROPERTY(EditAnywhere)
+		UStaticMeshComponent* PickupMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FName ItemID;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

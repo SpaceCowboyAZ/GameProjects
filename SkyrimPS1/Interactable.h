@@ -14,6 +14,18 @@ class SKYRIMPS1_API AInteractable : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AInteractable();
+	UFUNCTION(BlueprintNativeEvent)
+		void Interact(APlayerController* Controller);
+	virtual void Interact_Implementation(APlayerController* Controller);
+
+	UPROPERTY(EditDefaultsOnly)
+		FString Name;
+
+	UPROPERTY(EditDefaultsOnly)
+		FString Action;
+
+	UFUNCTION(BlueprintCallable, Category = "Pickup")
+		FString GetInteractText() const;
 
 protected:
 	// Called when the game starts or when spawned

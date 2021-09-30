@@ -32,7 +32,7 @@ public:
 		class AInteractable* CurrentInteractable;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TArray<FSwordPickup> Inventory;
+		TArray<FSword> Inventory;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		int32 Money;

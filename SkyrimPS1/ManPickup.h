@@ -6,21 +6,23 @@
 #include "GameFramework/Actor.h"
 #include "ManPickup.generated.h"
 
+//NOT FINISHED idk what is going on rn 
+
 UCLASS()
-class SKYRIMPS1_API AManPickup : public AActor
+UCLASS()
+class SKYRIMPS1_API AManPickup : public AInteractable
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+public:
 	AManPickup();
 
+	void Interact_Implementation(APlayerController* Controller) override;
+
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere)
+		UStaticMeshComponent* PickupMesh;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FName ItemID;
 };

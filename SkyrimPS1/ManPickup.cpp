@@ -2,12 +2,27 @@
 
 
 #include "ManPickup.h"
+#include "InventoryController.h"
 
 // Sets default values
 AManPickup::AManPickup()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PickupMesh = CreateDefaultSubobject<UStaticMeshComponent>("PickupMesh");
+	RootComponent = Cast<USceneComponent>(PickupMesh);
+
+	ItemID = FName("No ID");
+
+	Super::Name = "Item";
+	Super::Action = "pickup";
+}
+
+void AManPickup::Interact_Implementation(APlayerController* Controller)
+{
+	Super::Interact_Implementation(Controller);
+
+	AInventoryController* IController = Cast<AInventoryController>(Controller);
+	if (IController->AddItemToInventoryByID(ItemID))
+		Destroy();
 
 }
 

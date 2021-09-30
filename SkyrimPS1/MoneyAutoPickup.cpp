@@ -2,14 +2,23 @@
 
 
 #include "MoneyAutoPickup.h"
+#include "InventoryController.h"
+
 
 // Sets default values
 AMoneyAutoPickup::AMoneyAutoPickup()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+	Super::ItemID = FName("money");
+	Value = 1;
 }
+
+void AMoneyAutoPickup::Collect_Implementation(APlayerController* Controller)
+{
+	AInventoryController* IController = Cast<AInventoryController>(Controller);
+	IController->Money += Value;
+	Destroy();
+}
+ 
 
 // Called when the game starts or when spawned
 void AMoneyAutoPickup::BeginPlay()

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "AutoPickup.h"
 #include "MoneyAutoPickup.generated.h"
 
 UCLASS()
@@ -14,6 +14,12 @@ class SKYRIMPS1_API AMoneyAutoPickup : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AMoneyAutoPickup();
+
+	void Collect_Implementation(APlayerController* Controller) override;
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int32 Value;
 
 protected:
 	// Called when the game starts or when spawned

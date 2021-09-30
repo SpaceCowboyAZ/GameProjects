@@ -9,14 +9,17 @@
 AInventoryController::AInventoryController()
 {
 	InventorySlotLimit = 50;
-	InventoryWeightLimit = 500;
+	InventoryWeightLimit = 200;
 }
 
 int32 AInventoryController::GetInventoryWeight()
 {
 	int32 Weight = 0;
-	for (auto& Item : Inventory)
-	{
+	for (auto& Item : Inventory)  
+	{										//Deduces the type of a declared variable from its initialization expression
+											//To use the auto keyword, use it instead of a type to declare a variable, and specify an initialization expression.
+											// you can modify the auto keyword by using specifiers and declarators such as const, volatile, pointer(*), reference(&), and rvalue reference(&&).
+											//The compiler evaluates the initialization expressionand then uses that information to deduce the type of the variable.
 		Weight += Item.Weight;
 	}
 
@@ -27,7 +30,7 @@ bool AInventoryController::AddItemToInventoryByID(FName ID)
 {
 	AInventoryGameState* GameState = Cast<AInventoryGameState>(GetWorld()->GetGameState());
 	UDataTable* ItemTable = GameState->GetItemDB();
-	FInventoryItem* ItemToAdd = ItemTable->FindRow<FInventoryItem>(ID, "");
+	FSword* ItemToAdd = ItemTable->FindRow<FInventoryItem>(ID, "");
 
 	if (ItemToAdd)
 	{

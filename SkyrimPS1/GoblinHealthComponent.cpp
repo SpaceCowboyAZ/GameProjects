@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "GoblinHealthComponent.h"
@@ -38,7 +38,7 @@ void UGoblinHealthComponent::takeDamage(AActor* DamagedActor, float Damage, cons
 		return;
 	}
 	Health = FMath::Clamp(Health - Damage, 0.0f, DefaultHealth);
-	//
+	//Clamp () method returns the value clamped to the inclusive range of min and max. The method returns the following: If min ≤ value ≤ max, the method returns value.
 }
 
 
