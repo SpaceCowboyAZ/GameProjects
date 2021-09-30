@@ -26,17 +26,5 @@ void AManPickup::Interact_Implementation(APlayerController* Controller)
 
 }
 
-// Called when the game starts or when spawned
-void AManPickup::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
 
-// Called every frame
-void AManPickup::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
 

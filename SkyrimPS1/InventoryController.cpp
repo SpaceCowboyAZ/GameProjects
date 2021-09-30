@@ -4,7 +4,7 @@
 #include "InventoryController.h"
 
 #include "InventoryGameState.h"
-#include "InventoryCharacter.h"
+#include "Goblin.h"
 
 AInventoryController::AInventoryController()
 {
@@ -30,7 +30,7 @@ bool AInventoryController::AddItemToInventoryByID(FName ID)
 {
 	AInventoryGameState* GameState = Cast<AInventoryGameState>(GetWorld()->GetGameState());
 	UDataTable* ItemTable = GameState->GetItemDB();
-	FSword* ItemToAdd = ItemTable->FindRow<FInventoryItem>(ID, "");
+	Fsword* ItemToAdd = ItemTable->FindRow<Fsword>(ID, "");
 
 	if (ItemToAdd)
 	{

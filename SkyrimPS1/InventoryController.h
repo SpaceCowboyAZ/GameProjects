@@ -8,9 +8,7 @@
 #include "GameFramework/PlayerController.h"
 #include "InventoryController.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class SKYRIMPS1_API AInventoryController : public APlayerController
 {
@@ -32,7 +30,7 @@ public:
 		class AInteractable* CurrentInteractable;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TArray<FSword> Inventory;
+		TArray<Fsword> Inventory;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		int32 Money;

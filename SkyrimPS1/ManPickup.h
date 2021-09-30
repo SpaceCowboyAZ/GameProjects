@@ -3,12 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Interactable.h"
+//#include "GameFramework/Actor.h"
 #include "ManPickup.generated.h"
 
-//NOT FINISHED idk what is going on rn 
 
-UCLASS()
+
 UCLASS()
 class SKYRIMPS1_API AManPickup : public AInteractable
 {

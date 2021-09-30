@@ -7,7 +7,7 @@
 #include "MoneyAutoPickup.generated.h"
 
 UCLASS()
-class SKYRIMPS1_API AMoneyAutoPickup : public AActor
+class SKYRIMPS1_API AMoneyAutoPickup : public AAutoPickup
 {
 	GENERATED_BODY()
 	

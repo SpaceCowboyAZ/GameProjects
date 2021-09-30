@@ -2,6 +2,7 @@
 
 
 #include "AutoPickup.h"
+#include "InventoryController.h"
 
 // Sets default values
 AAutoPickup::AAutoPickup()

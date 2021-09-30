@@ -4,7 +4,7 @@
 #include "sword.h"
 
 // Sets default values
-Asword::Asword()
+Fsword::Fsword()
 {
 
 	this->Name = FText::FromString("No Name");
