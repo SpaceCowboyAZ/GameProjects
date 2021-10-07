@@ -16,6 +16,6 @@ ASlayer::ASlayer()
 		DefaultPawnClass = PlayerPawnBPCLass.Class;
 	}
 
-	PlayerControllerClass = AMenuController::StaicClass();
+	PlayerControllerClass = AMenuController::StaticClass();
 	HUDClass = AMenuHUD::StaticClass();
 }

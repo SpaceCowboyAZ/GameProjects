@@ -13,5 +13,9 @@ UCLASS()
 class SKYRIMPS1_API AMenuController : public APlayerController
 {
 	GENERATED_BODY()
+protected:
+	AMenuController();
+	virtual void SetupInputComponent() override;
+	void OpenMenu();
 	
 };

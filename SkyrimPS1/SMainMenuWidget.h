@@ -8,7 +8,7 @@
 /**
  * 
  */
-class SMainMenuWidget : SCompoundWidget
+class SMainMenuWidget : public SCompoundWidget
 {
 public:
 
@@ -20,6 +20,10 @@ public:
 		
 		//every widget needs a construction function
 		void Construct(const FArguments& InArgs);
+
+	FReply OnPlayClicked() const;
+	FReply OnQuitClicked() const;
+
 	//HUD that created this widget
 	TWeakObjectPtr<class AMenuHUD> OwningHUD;
 

@@ -14,4 +14,6 @@ class SKYRIMPS1_API ASlayer : public AGameMode
 {
 	GENERATED_BODY()
 	
+		ASlayer();
+
 };
