@@ -10,7 +10,8 @@
 ASlayer::ASlayer()
 {
 
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPCLass(TEXT("SkyrimPS1/GoblinCPP/Blueprints/goblin"));
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPCLass(TEXT("SkyrimPS1/Content/Blueprints/Goblin_BP.uasset"));
+		//SkyrimPS1/Content/Blueprints/"));
 	if (PlayerPawnBPCLass.Class != NULL)
 	{
 		DefaultPawnClass = PlayerPawnBPCLass.Class;

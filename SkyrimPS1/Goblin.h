@@ -48,6 +48,8 @@ public:
 
 	bool bDead; //determines if character is dead or not
 	
+	TArray<FString> Inventory;
+	bool bIsPickingUp = false;
 
 protected:
 	// Called when the game starts or when spawned
@@ -60,6 +62,9 @@ protected:
 	/** Function to check for the closest Interactable in sight and in range. */
 	void CheckForInteractables();
 
+	void BeginPickup();
+	void EndPickup();
+	void ShowInventory();
 
 public:	
 	// Called every frame

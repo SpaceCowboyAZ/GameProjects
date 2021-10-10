@@ -8,6 +8,7 @@
 #include "sword.h"
 // #include "InventoryItem.h"
 #include "InventoryController.h"
+#include "Engine.h"
 
 // Sets default values
 AGoblin::AGoblin()
@@ -132,6 +133,26 @@ void AGoblin::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 		PlayerInputComponent->BindAxis("Forward", this, &AGoblin::MoveForward);
 		PlayerInputComponent->BindAxis("horizontal", this, &AGoblin::MoveRight);
+
+		InputComponent->BindAction("Pickup", IE_Pressed, this, &AGoblin::BeginPickup);
+		InputComponent->BindAction("Pickup", IE_Released, this, &AGoblin::EndPickup);
+
+		InputComponent->BindAction("OpenInventory", IE_Pressed, this, &AGoblin::ShowInventory);
+}
+
+
+void AGoblin::BeginPickup()
+{
+	bIsPickingUp = true;
+
+}
+void AGoblin::EndPickup() {
+	
+	bIsPickingUp = false;
+}
+void AGoblin::ShowInventory() {
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("This is our inventory"));
 }
 
 void AGoblin::MoveForward(float Axis)

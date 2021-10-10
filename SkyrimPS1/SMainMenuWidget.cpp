@@ -45,6 +45,8 @@ void SMainMenuWidget::Construct(const FArguments& InArgs)
 			.VAlign(VAlign_Fill)
 			.Padding(ContentPadding)
 			[
+
+
 			SNew(SVerticalBox)
 			//title text
 		+ SVerticalBox::Slot()

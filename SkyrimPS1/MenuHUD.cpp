@@ -21,7 +21,7 @@ void AMenuHUD::ShowMenu()
 	if (GEngine && GEngine->GameViewport)
 	{
 		MenuWidget = SNew(SMainMenuWidget).OwningHUD(this);
-		//	GEngine->GameViewport->AddViewportWidgetContent(SAssignNew(MenuWidgetContainer, SWeakWidget).PossiblyNullContent(MenuWidget.ToSharedRef()));
+		GEngine->GameViewport->AddViewportWidgetContent(SAssignNew(MenuWidgetContainer, SWeakWidget).PossiblyNullContent(MenuWidget.ToSharedRef()));
 		if (PlayerOwner)
 		{
 			PlayerOwner->bShowMouseCursor = true;

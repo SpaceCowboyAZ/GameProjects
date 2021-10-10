@@ -8,7 +8,7 @@
 // Sets default values
 AMoneyAutoPickup::AMoneyAutoPickup()
 {
-	Super::ItemID = FName("money");
+	Super::ItemID = FName("Money");
 	Value = 1;
 }
 
