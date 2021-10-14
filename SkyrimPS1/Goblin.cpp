@@ -4,7 +4,6 @@
 
 #include "Goblin.h"
 #include "Interactable.h"
-#include "AutoPickup.h"
 #include "sword.h"
 // #include "InventoryItem.h"
 #include "InventoryController.h"
@@ -46,7 +45,6 @@ AGoblin::AGoblin()
 }
 
 
-
 // Called when the game starts or when spawned
 void AGoblin::BeginPlay()
 {
@@ -59,67 +57,8 @@ void AGoblin::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
-	CollectAutoPickups();
-	CheckForInteractables();
 }
 
-void AGoblin::CollectAutoPickups()
-{
-	// Get all overlapping Actors and store them in an array
-	TArray<AActor*> CollectedActors;
-	CollectionSphere->GetOverlappingActors(CollectedActors);
-
-	AInventoryController* IController = Cast<AInventoryController>(GetController());
-
-	// For each collected Actor
-	for (int32 iCollected = 0; iCollected < CollectedActors.Num(); ++iCollected)
-	{
-		// Cast the actor to AAutoPickup
-		AAutoPickup* const TestPickup = Cast<AAutoPickup>(CollectedActors[iCollected]);
-		// If the cast is successful and the pickup is valid and active 
-		if (TestPickup && !TestPickup->IsPendingKill())
-		{
-			TestPickup->Collect(IController);
-			
-		}
-	}
-
-
-}
-
-
-void AGoblin::CheckForInteractables()
-{
-	// Create a LineTrace to check for a hit
-	FHitResult HitResult;
-
-	int32 Range = 500;
-	FVector StartTrace = FollowCamera->GetComponentLocation();
-	FVector EndTrace = (FollowCamera->GetForwardVector() * Range) + StartTrace;
-
-	FCollisionQueryParams QueryParams;
-	QueryParams.AddIgnoredActor(this);
-
-	AInventoryController* IController = Cast<AInventoryController>(GetController());
-
-	if (IController)
-	{
-		// Check if something is hit
-		if (GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, QueryParams))
-		{
-			// Cast the actor to AInteractable
-			AInteractable* Interactable = Cast<AInteractable>(HitResult.GetActor());
-			// If the cast is successful
-			if (Interactable)
-			{
-				IController->CurrentInteractable = Interactable;
-				return;
-			}
-		}
-
-		IController->CurrentInteractable = nullptr;
-	}
-}
 // Called to bind functionality to input
 void AGoblin::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

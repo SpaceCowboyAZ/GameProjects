@@ -2,28 +2,35 @@
 
 
 #include "MoneyAutoPickup.h"
-#include "InventoryController.h"
+#include "Components/SphereComponent.h"
+//#include "InventoryController.h"
 
 
 // Sets default values
 AMoneyAutoPickup::AMoneyAutoPickup()
 {
-	Super::ItemID = FName("Money");
-	Value = 1;
+
+	PrimaryActorTick.bCanEverTick = true;
+
+	//AUTOPICKUPS
+	CollisionVolume = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionVolume"));
+	RootComponent = CollisionVolume;
 }
 
-void AMoneyAutoPickup::Collect_Implementation(APlayerController* Controller)
-{
-	AInventoryController* IController = Cast<AInventoryController>(Controller);
-	IController->Money += Value;
-	Destroy();
-}
+
  
 
 // Called when the game starts or when spawned
 void AMoneyAutoPickup::BeginPlay()
 {
+	
+	
+	
 	Super::BeginPlay();
+
+	//AUTOPICKUPS side note: safer to put in Begin play
+	CollisionVolume->OnComponentBeginOverlap.AddDynamic(this, &AMoneyAutoPickup::OnOverlapBegin);
+	CollisionVolume->OnComponentEndOverlap.AddDynamic(this, &AMoneyAutoPickup::OnOverlapEnd);
 	
 }
 
@@ -31,6 +38,18 @@ void AMoneyAutoPickup::BeginPlay()
 void AMoneyAutoPickup::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+}
+void AMoneyAutoPickup::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	UE_LOG(LogTemp, Warning, TEXT("OnOverlapBegin()"));
+}
+
+
+void AMoneyAutoPickup::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+
+	UE_LOG(LogTemp, Warning, TEXT("OnOverlapEnd()"));
 
 }
 

@@ -3,23 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AutoPickup.h"
+#include "GameFramework/Actor.h"
 #include "MoneyAutoPickup.generated.h"
 
 UCLASS()
-class SKYRIMPS1_API AMoneyAutoPickup : public AAutoPickup
+class SKYRIMPS1_API AMoneyAutoPickup : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
+	AMoneyAutoPickup()
+		//Base Shape collision : MoneyAutoPickups
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category "Item | Collision");
+		class USphereComponent* CollisionVolume;
 	// Sets default values for this actor's properties
-	AMoneyAutoPickup();
-
-	void Collect_Implementation(APlayerController* Controller) override;
-
-protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int32 Value;
 
 protected:
 	// Called when the game starts or when spawned
@@ -29,4 +26,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
+	UFUNCTION()
+	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+		virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 };
