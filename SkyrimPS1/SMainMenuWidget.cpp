@@ -18,7 +18,7 @@ void SMainMenuWidget::Construct(const FArguments& InArgs)
 	const FMargin ContentPadding = FMargin(500.f, 300.f);
 	const FMargin ButtonPadding = FMargin(10.f);
 
-	const FText TitleText = LOCTEXT("GameTitle", "Goblins ate my code");
+	const FText TitleText = LOCTEXT("GameTitle", "Main Menu");
 	const FText PlayText = LOCTEXT("PlayGame", "Play");
 	const FText SettingsText = LOCTEXT("Settings", "Settings");
 	const FText QuitText = LOCTEXT("QuitGame", "Quit Game");
