@@ -15,6 +15,9 @@ void AExplosive::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 
 	Super::OnOverlapBegin(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
 	UE_LOG(LogTemp, Warning, TEXT("Explosive::OnOverlapBegin()"));
+
+
+	Destroy();
  }
 
 

@@ -28,6 +28,7 @@ class SKYRIMPS1_API AGoblin : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AGoblin();
+
 																		
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera) //VisibleAnywhere: be able to see the variable we mark in details panel in UnrealEngine
 		USpringArmComponent* CameraBoom; //*pointer		        //BlueprintReadOnly: read only variables in blueprint and not be able to edit them
@@ -50,6 +51,8 @@ public:
 	
 	TArray<FString> Inventory;
 	bool bIsPickingUp = false;
+
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -76,4 +79,9 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	//virtual void Tick(float DeltaTime) override; required to collect any pickup
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Items)
+		class AWeapon* EquippedWeapon;
+
+	FORCEINLINE void SetEquippedWeapon(AWeapon* WeaponToSet) { EquippedWeapon = WeaponToSet; }
 };

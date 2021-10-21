@@ -3,10 +3,7 @@
 // .cpp files implement the .h files
 
 #include "Goblin.h"
-#include "Interactable.h"
-#include "sword.h"
-// #include "InventoryItem.h"
-#include "InventoryController.h"
+
 #include "Engine.h"
 
 // Sets default values

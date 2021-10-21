@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Goblin.h"
+#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Item.generated.h"
 
@@ -12,37 +12,41 @@ class SKYRIMPS1_API AItem : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	AItem();
+		//Base Shape collision : MoneyAutoPickups
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Item | Collision")
+		class USphereComponent* CollisionVolume;
 
+
+		//base mesh component
+		UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Item | Mesh")
+		class UStaticMeshComponent* Mesh;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Particles")
+			class UParticleSystemComponent* IdleParticlesComponent;
+		
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Particles")
+		class UParticleSystem* OverlapParticles;
+
+		
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Sounds")
+		class USoundCue* OverlapSound;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | ItemProperties")
+		bool bRotate;
+		float RotationRate;
+protected:
+	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	virtual void Tick(float DeltaSeconds) override;
-	
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
-	
-	//CODE FOR MANUAL PICKUPS
-	UShapeComponent* TBox;
-
-	UPROPERTY(EditAnywhere)
-		UStaticMeshComponent* SM_TBox;
-
-	AGoblin* MyPlayerController;
-
-	UPROPERTY(EditAnywhere)
-		FString ItemName = FString(TEXT(""));
-
-	void Pickup();
-
-	void GetPlayer(AActor* Player);
-
-	bool bItemIsWithinRange = false;
 
 	UFUNCTION()
-		void TriggerEnter(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-		//(class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);  old code for reference
-	
+	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
 	UFUNCTION()
-		void TriggerExit(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-	//(class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+		virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 };

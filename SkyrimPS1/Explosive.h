@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MoneyAutoPickup.h"
+#include "Item.h"
 #include "Explosive.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SKYRIMPS1_API AExplosive : public AMoneyAutoPickup
+class SKYRIMPS1_API AExplosive : public AItem
 {
 	GENERATED_BODY()
 	  
